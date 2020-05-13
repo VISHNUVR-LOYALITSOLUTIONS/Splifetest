@@ -1,0 +1,78 @@
+<odoo>
+  <data>
+
+
+     <record id="totalhr_total_attendance" model="ir.ui.view">
+            <field name="name">hr.attendance.sheet</field>
+            <field name="model">account.analytic.line</field>
+            <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form" />
+            <field name="arch" type="xml">
+                 <xpath expr="//sheet/group/group/field[@name='unit_amount']" position="after">
+                    <field name="total_attendance" widget="timesheet_uom"/>
+                     <!--<notebook>-->
+                 <!--<page string="Work Entry" name="work_entry" attrs="{'invisible': [('hr_work_entry_ids', '=', [])]}">-->
+                    <!--<field name="hr_work_entry_ids"/>-->
+                <!--</page>-->
+            <!--</notebook>-->
+                 </xpath>
+
+
+            </field>
+        </record>
+
+
+     <record id="hr_total_grid" model="ir.ui.view">
+            <field name="name">hr.attendance.grid</field>
+            <field name="model">account.analytic.line</field>
+            <field name="inherit_id" ref="timesheet_grid.timesheet_view_form" />
+            <field name="arch" type="xml">
+                 <xpath expr="//sheet/group/group/field[@name='date']" position="after">
+                    <field name="total_attendance" widget="timesheet_uom"/>
+                     <!--<notebook position="inside">-->
+                <!--<page string="Work Entry" name="work_entry" attrs="{'invisible': [('hr_work_entry_ids', '=', [])]}">-->
+                    <!--<field name="hr_work_entry_ids"/>-->
+                <!--</page>-->
+            <!--</notebook>-->
+                 </xpath>
+
+
+            </field>
+        </record>
+
+
+     <record id="attendtotal_hr_work_entry_form" model="ir.ui.view">
+            <field name="name">hr.work.entry.grid</field>
+            <field name="model">hr.work.entry</field>
+            <field name="inherit_id" ref="hr_work_entry.hr_work_entry_view_form" />
+            <field name="arch" type="xml">
+
+
+                 <xpath expr="//sheet/div[@class='oe_title']" position="after">
+
+                <field name="time_sheet_ids" invisible="1"/>
+                     <div align="right">
+                <button style="border: 1px solid black;" name="action_view_work"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-pencil-square-o">
+                    <div class="o_form_field o_stat_info">
+                        <span class="o_stat_text">Time Sheet</span>
+                    </div>
+                </button>
+            </div>
+                </xpath>
+                 <xpath expr="//sheet/group/group/field[@name='work_entry_type_id']" position="after">
+                    <field name="project_id"/>
+                   <field name="project_task"/>
+                     <field name="total_work_attendance"/>
+                 </xpath>
+            </field>
+        </record>
+
+
+
+
+
+
+  </data>
+</odoo>
