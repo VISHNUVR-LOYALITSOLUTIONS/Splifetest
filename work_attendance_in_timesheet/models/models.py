@@ -83,6 +83,8 @@ class Hrprojects(models.Model):
             'date': self.date_start,
             'project_id': self.project_id.id,
             'total_attendance': self.total_work_attendance,
+            'unit_amount':self.duration,
+            'name':self.name
             # 'so_line':1
 
         }

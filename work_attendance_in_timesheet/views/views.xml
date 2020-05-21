@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form" />
             <field name="arch" type="xml">
                  <xpath expr="//sheet/group/group/field[@name='unit_amount']" position="after">
-                    <field name="total_attendance" widget="timesheet_uom"/>
+                    <field name="total_attendance" widget="timesheet_uom" invisible="1"/>
                      <!--<notebook>-->
                  <!--<page string="Work Entry" name="work_entry" attrs="{'invisible': [('hr_work_entry_ids', '=', [])]}">-->
                     <!--<field name="hr_work_entry_ids"/>-->
@@ -21,23 +21,23 @@
         </record>
 
 
-       <record id="tree_totalhr_total_attendance" model="ir.ui.view">
-            <field name="name">hr.attendance.tree</field>
-            <field name="model">account.analytic.line</field>
-            <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree" />
-            <field name="arch" type="xml">
-                 <field name='unit_amount' position="before">
-                    <field name="total_attendance" widget="timesheet_uom" readonly="1"/>
-                     <!--<notebook>-->
-                 <!--<page string="Work Entry" name="work_entry" attrs="{'invisible': [('hr_work_entry_ids', '=', [])]}">-->
-                    <!--<field name="hr_work_entry_ids"/>-->
-                <!--</page>-->
-            <!--</notebook>-->
-                 </field>
+       <!--<record id="tree_totalhr_total_attendance" model="ir.ui.view">-->
+            <!--<field name="name">hr.attendance.tree</field>-->
+            <!--<field name="model">account.analytic.line</field>-->
+            <!--<field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree" />-->
+            <!--<field name="arch" type="xml">-->
+                 <!--<field name='unit_amount' position="before">-->
+                    <!--<field name="total_attendance" widget="timesheet_uom" readonly="1"/>-->
+                     <!--&lt;!&ndash;<notebook>&ndash;&gt;-->
+                 <!--&lt;!&ndash;<page string="Work Entry" name="work_entry" attrs="{'invisible': [('hr_work_entry_ids', '=', [])]}">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<field name="hr_work_entry_ids"/>&ndash;&gt;-->
+                <!--&lt;!&ndash;</page>&ndash;&gt;-->
+            <!--&lt;!&ndash;</notebook>&ndash;&gt;-->
+                 <!--</field>-->
 
 
-            </field>
-        </record>
+            <!--</field>-->
+        <!--</record>-->
 
 
 
@@ -47,7 +47,7 @@
             <field name="inherit_id" ref="timesheet_grid.timesheet_view_form" />
             <field name="arch" type="xml">
                  <xpath expr="//sheet/group/group/field[@name='date']" position="after">
-                    <field name="total_attendance" widget="timesheet_uom"/>
+                    <field name="total_attendance" widget="timesheet_uom" invisible="1"/>
                      <!--<notebook position="inside">-->
                 <!--<page string="Work Entry" name="work_entry" attrs="{'invisible': [('hr_work_entry_ids', '=', [])]}">-->
                     <!--<field name="hr_work_entry_ids"/>-->
@@ -73,6 +73,7 @@
                 <field name="time_sheet_ids" invisible="1"/>
                      <div class="oe_button_box" align="right" style="padding:10px;">
                 <button style="border: 1px solid black;" name="action_view_work"
+                        confirm="Are you sure you want to proceed this as time sheet entry?"
                     type="object"
                     class="oe_stat_button"
                         attrs="{'invisible':[('total_work_attendance','!=',0.0)]}"
@@ -86,7 +87,7 @@
                  <xpath expr="//sheet/group/group/field[@name='work_entry_type_id']" position="after">
                     <field name="project_id" options="{'no_create_edit':True}"/>
                    <field name="project_task" options="{'no_create_edit':True}"/>
-                     <field name="total_work_attendance"/>
+                     <field name="total_work_attendance" invisible="1"/>
                  </xpath>
             </field>
         </record>
