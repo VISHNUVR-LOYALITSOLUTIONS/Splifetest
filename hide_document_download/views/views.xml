@@ -1,0 +1,18 @@
+<odoo>
+  <data>
+    <record id="document_download_users" model="ir.ui.view">
+        <field name="name">res.users.document</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//sheet" position="inside">
+            <!--<xpath expr="//sheet/notebook/page/field[@name='groups_id']/" position="after">-->
+                    <group string="Access">
+                        <field name="document_hide" />
+                    </group>
+            </xpath>
+        </field>
+</record>
+  </data>
+</odoo>

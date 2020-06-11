@@ -1,0 +1,115 @@
+<odoo>
+  <data>
+
+
+       <record model="ir.ui.view" id="room_chart_tree_view">
+            <field name="name">Room chart tree</field>
+            <field name="model">room.chart</field>
+            <field name="arch" type="xml">
+                <tree string="Rooms">
+                    <field name="occupant_name" />
+                    <field name="occupy_type"/>
+                    <field name="living_type"/>
+                </tree>
+            </field>
+        </record>
+
+
+
+
+
+
+    <record model="ir.ui.view" id="room_chart_setup_form">
+      <field name="name">Room Chart Form</field>
+      <field name="model">room.chart</field>
+      <field name="arch" type="xml">
+
+              <form string="Room Chart">
+                <header>
+
+                    <button name="action_confirm" type="object" string="Confirm"/>
+                    <button name="action_vacant" type="object" string="Vacant"/>
+                    <field name="current_status" widget="statusbar" statusbar_visible="vacant,occupy"/>
+                </header>
+                <sheet>
+
+                    <field name="name" style="font-size:14px;"/>
+
+                    <group>
+                        <group>
+                            <field name="occupant_name" />
+
+                              <field name="entering_date"/>
+                        </group>
+                        <group>
+                            <field name="occupy_type"/>
+
+                            <field name="living_type"/>
+                        </group>
+                    </group>
+
+
+                    <notebook>
+
+
+                        <page string="Rooms">
+                                <field name="order_line">
+
+                                    <form>
+
+                                    <group>
+                                        <group>
+
+                                            <field name="chart_room"/>
+                                            <field name="chart_floor"/>
+                                            <field name="chart_flat"/>
+                                             <field name="chart_status"/>
+                                        </group>
+                                    </group>
+                                </form>
+
+                                    <tree string="Room">
+                                         <field name="chart_room"/>
+                                            <field name="chart_floor"/>
+                                            <field name="chart_flat"/>
+                                             <field name="chart_status"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+
+
+                </sheet>
+              </form>
+      </field>
+    </record>
+
+
+
+
+
+
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="roomchart_setup_action_window">
+      <field name="name">Room Chart</field>
+      <field name="res_model">room.chart</field>
+      <field name="view_mode">tree,form</field>
+         <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create
+                </p>
+            </field>
+    </record>
+
+
+
+
+
+    <menuitem name="Room Charts" id="rooms_chart_submenu" parent="rooms_setup" sequence="1"
+              action="roomchart_setup_action_window"/>
+
+
+  </data>
+</odoo>

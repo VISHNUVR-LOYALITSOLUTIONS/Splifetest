@@ -1,0 +1,312 @@
+<odoo>
+  <data>
+
+
+
+       <record id="questions_view_form_inherit" model="ir.ui.view">
+        <field name="name">hr.applicant.form.inherit</field>
+        <field name="model">hr.applicant</field>
+        <field name="inherit_id" ref="hr_recruitment.hr_applicant_view_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//button[@name='action_makeMeeting']" position="after">
+                <button name="action_questions_value"
+                    class="oe_stat_button"
+                    icon="fa-user"
+                    type="object"
+                  >
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text">Recruitment Questions</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+
+    </record>
+
+
+
+
+       <!--<record model="ir.ui.view" id="recruitment_questions_line_tree_view">-->
+            <!--<field name="name">Recruitment Questions tree</field>-->
+            <!--<field name="model">recruitment.questions.form</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<tree string="Rooms">-->
+                    <!--<field name="occupant_name" />-->
+                    <!--<field name="occupy_type"/>-->
+                    <!--<field name="living_type"/>-->
+                <!--</tree>-->
+            <!--</field>-->
+        <!--</record>-->
+
+
+
+       <record model="ir.ui.view" id="recruitment_questions_line_tree">
+      <field name="name">Recruitment Questions tree</field>
+      <field name="model">recruitment.questions.form</field>
+      <field name="arch" type="xml">
+
+              <tree string="Recruitment Questions">
+
+
+                            <field name="employee_name" />
+
+                              <field name="candidate_name"/>
+
+                            <field name="entering_date"/>
+
+              </tree>
+      </field>
+       </record>
+
+
+
+
+
+
+    <record model="ir.ui.view" id="recruitment_questions_line_setup_form">
+      <field name="name">Recruitment Questions Form</field>
+      <field name="model">recruitment.questions.form</field>
+      <field name="arch" type="xml">
+
+              <form string="Recruitment Questions">
+
+                <sheet>
+
+
+                    <group>
+                        <group>
+                            <field name="employee_name" />
+
+                              <field name="candidate_name"/>
+                        </group>
+                        <group>
+                            <field name="entering_date"/>
+
+                            <field name="position"/>
+                        </group>
+                    </group>
+
+
+                    <notebook>
+
+
+
+
+
+
+                            <page string="Questions">
+
+
+
+                                <table style="padding:5px;">
+                                    <tr style="padding:5px;">
+                                        <td style="padding:5px;">Scale:</td>
+                                         <td style="padding:5px;">5-Exceptional</td>
+                                         <td style="padding:5px;">4-Above Average</td>
+                                         <td style="padding:5px;">3-Average</td>
+                                         <td style="padding:5px;">2-Satisfactory</td>
+                                         <td style="padding:5px;">1-Unsatisfactory</td>
+                                    </tr>
+                                </table>
+                                <field name="order_line" widget="section_and_note_one2many" mode="tree">
+
+
+
+                                <form>
+
+                                    <group>
+                                        <group >
+
+                                        <field name="recruitment_quest" invisible="1"/>
+                                            <field name="exceptionnal_bool" invisible="1"/>
+                                            <field name="above_average_bool" invisible="1"/>
+                                             <field name="average_bool" invisible="1"/>
+                                            <field name="satisfactory_bool" invisible="1"/>
+                                             <field name="unsatisfactory_bool" invisible="1"/>
+
+
+
+                                        </group>
+
+                                    </group>
+
+
+                                    <!--<label for="name" string="Description" attrs="{'invisible': [('display_type', '!=', False)]}"/>-->
+                                    <!--<label for="name" string="Section Name (eg. Products, Services)" attrs="{'invisible': [('display_type', '!=', 'line_section')]}"/>-->
+                                    <!--<label for="name" string="Note" attrs="{'invisible': [('display_type', '!=', 'line_note')]}"/>-->
+
+                                </form>
+                                <tree string="Recruitment" editable="bottom">
+                                    <control>
+                                        <create name="add_product_control" string="Add a product"/>
+                                        <!--<create name="add_section_control" string="Add a section"/>-->
+                                        <create name="add_note_control" string="Add a note" />
+                                    </control>
+
+                                        <field name="recruitment_quest"/>
+                                            <field name="exceptionnal_bool"/>
+                                            <field name="above_average_bool"/>
+                                             <field name="average_bool"/>
+                                           <field name="satisfactory_bool"/>
+                                             <field name="unsatisfactory_bool"/>
+                                    </tree>
+
+                            </field>
+
+                        </page>
+                        <page string="Overall options" >
+
+                      <field name="overall_option_ids" widget="section_and_note_one2many" mode="tree">
+
+                            <form>
+
+                                    <group>
+                            <group>
+                                            <field name="name" invisible="1"/>
+                                            <field name="advance_bool" invisible="1"/>
+                                            <field name="advance_res_bool" invisible="1"/>
+                                             <field name="dont_advance_bool" invisible="1"/>
+                            </group>
+                                    </group>
+                            </form>
+
+                             <tree string="Recruitment" editable="bottom">
+                                    <control>
+                                        <create name="add_product_control" string="Add a product"/>
+                                        <!--<create name="add_section_control" string="Add a section"/>-->
+                                        <create name="add_note_control" string="Add a note" />
+                                    </control>
+
+                                        <field name="name"/>
+                                            <field name="advance_bool"/>
+                                            <field name="advance_res_bool"/>
+                                             <field name="dont_advance_bool"/>
+                                    </tree>
+                      </field>
+
+                        </page>
+
+
+
+
+
+
+                        <!--<page string="Questions">-->
+                                <!--<field name="order_line" widget="section_and_note_one2many" mode="tree">-->
+
+
+                                   <!--<control>-->
+                                        <!--&lt;!&ndash;<create name="add_product_control" string="Add a product"/>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<create name="add_section_control" string="Add a section" context="{'default_display_type': 'line_section'}"/>&ndash;&gt;-->
+                                        <!--<create name="add_note_control" string="Add a note" />-->
+                                    <!--</control>-->
+
+                                    <!--<tree string="Recruitment">-->
+                                        <!--<field name="recruitment_quest"/>-->
+                                            <!--<field name="exceptionnal_bool"/>-->
+                                            <!--<field name="above_average_bool"/>-->
+                                             <!--<field name="average_bool"/>-->
+                                           <!--<field name="satisfactory_bool"/>-->
+                                             <!--<field name="unsatisfactory_bool"/>-->
+                                    <!--</tree>-->
+
+                                    <!--&lt;!&ndash;<form>&ndash;&gt;-->
+
+                                    <!--&lt;!&ndash;<group>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<group>&ndash;&gt;-->
+
+                                            <!--&lt;!&ndash;<field name="recruitment_quest"/>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<field name="exceptionnal_bool"/>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<field name="above_average_bool"/>&ndash;&gt;-->
+                                             <!--&lt;!&ndash;<field name="average_bool"/>&ndash;&gt;-->
+                                           <!--&lt;!&ndash;<field name="satisfactory_bool"/>&ndash;&gt;-->
+                                             <!--&lt;!&ndash;<field name="unsatisfactory_bool"/>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</group>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</group>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</form>&ndash;&gt;-->
+
+
+                                <!--</field>-->
+                            <!--</page>-->
+
+
+                        <!--<page string="Overall options">-->
+                                <!--<field name="overall_option_ids" widget="section_and_note_one2many" mode="tree">-->
+
+
+
+                                     <!--<control>-->
+                                        <!--&lt;!&ndash;<create name="add_product_control" string="Add a product"/>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<create name="add_section_control" string="Add a section" context="{'default_display_type': 'line_section'}"/>&ndash;&gt;-->
+                                        <!--<create name="add_note_control" string="Add a note" />-->
+                                    <!--</control>-->
+                                    <!--<tree string="Overall options">-->
+                                        <!--<field name="name"/>-->
+                                            <!--<field name="advance_bool"/>-->
+                                            <!--<field name="advance_res_bool"/>-->
+                                             <!--<field name="dont_advance_bool"/>-->
+                                    <!--</tree>-->
+
+
+                                    <!--&lt;!&ndash;<form>&ndash;&gt;-->
+
+                                    <!--&lt;!&ndash;<group>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<group>&ndash;&gt;-->
+
+                                           <!--&lt;!&ndash;<field name="name"/>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<field name="advance_bool"/>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<field name="advance_res_bool"/>&ndash;&gt;-->
+                                             <!--&lt;!&ndash;<field name="dont_advance_bool"/>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</group>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</group>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</form>&ndash;&gt;-->
+                                <!--</field>-->
+                            <!--</page>-->
+
+                        </notebook>
+
+
+                </sheet>
+              </form>
+      </field>
+    </record>
+
+
+
+
+
+
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="recruitment_questions_line_setup_action_window">
+      <field name="name">Recruitment Questions Form</field>
+      <field name="res_model">recruitment.questions.form</field>
+      <field name="view_mode">tree,form</field>
+         <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create
+                </p>
+            </field>
+    </record>
+
+
+
+       <menuitem id="myform_ID" name="Recruitment Questions Form" />
+
+         <menuitem id="myform_menu_ID" name="Recruitment Questions Form" parent="myform_ID"  />
+
+         <menuitem id="myform_menu2_ID" name="Recruitment Questions Form" parent="myform_menu_ID"  action="recruitment_questions_line_setup_action_window" />
+
+
+
+
+
+    <!--<menuitem name="Recruitment Questions Form" id="recruitment_chart_submenu"-->
+              <!--parent="rooms_setup"-->
+              <!--action="recruitment_questions_line_setup_action_window"/>-->
+
+
+  </data>
+</odoo>

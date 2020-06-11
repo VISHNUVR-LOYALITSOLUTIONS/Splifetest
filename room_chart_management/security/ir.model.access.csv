@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_room_chart_management_room,room.room,model_room_room,,1,1,1,1
+access_room_chart_management_floor,room.floor,model_room_floor,,1,1,1,1
+access_room_chart_management_flat,room.flat,model_room_flat,,1,1,1,1
+access_room_chart_management_occupy_type,room.occupy,model_room_occupy,,1,1,1,1
+access_room_chart_management_type,room.type,model_room_type,,1,1,1,1
+access_room_chart_management_room_chart,room.chart,model_room_chart,,1,1,1,1
+access_room_chart_management_room_chart_line,room.chart.line,model_room_chart_line,,1,1,1,1
+
+
+
