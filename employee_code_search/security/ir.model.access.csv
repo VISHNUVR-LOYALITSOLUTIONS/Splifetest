@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_employee_code_search_employee_code_search,employee_code_search.employee_code_search,model_employee_code_search_employee_code_search,base.group_user,1,1,1,1

@@ -1,0 +1,39 @@
+<odoo>
+  <data>
+            <record id="view_security_company_form" model="ir.ui.view">
+                <field name="name">res.company.form.inherit</field>
+                <field name="model">res.company</field>
+                <field name="inherit_id" ref="base.view_company_form"/>
+                <field name="arch" type="xml">
+                    <xpath expr="//sheet/notebook/page/group/group/field[@name='favicon']" position="after">
+                        <field name="senior_living"/>
+                         <field name="ayurlaya_name"/>
+                         <field name="fhc_name"/>
+                         <field name="home_nursing_name"/>
+                    </xpath>
+                </field>
+            </record>
+
+
+
+
+            <record id="x_view_partner_xml_form" model="ir.ui.view">
+                <field name="name">res.partner</field>
+                <field name="model">res.partner</field>
+                <field name="type">form</field>
+                <field name="inherit_id" ref="base.view_partner_form"/>
+                <field name="arch" type="xml">
+                  <xpath expr="//field[@name='phone']" position="after">
+
+
+                        <field name="x_senior_living" invisible="1"/>
+                         <field name="x_ayurlaya_name" invisible="1"/>
+                         <field name="x_fhc_name" invisible="1"/>
+                         <field name="x_home_nursing_name" invisible="1"/>
+                    </xpath>
+                </field>
+            </record>
+
+
+  </data>
+</odoo>

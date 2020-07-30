@@ -1,0 +1,132 @@
+<odoo>
+  <data>
+
+
+
+
+      <record model="ir.ui.view" id="salary_hike_line_tree">
+      <field name="name">salary.hike.form tree</field>
+      <field name="model">salary.hike.form</field>
+      <field name="arch" type="xml">
+
+              <tree string="Salary Hike">
+
+
+                            <field name="employee_name" />
+
+              </tree>
+      </field>
+       </record>
+
+
+
+
+
+
+    <record model="ir.ui.view" id="salary_hike_line_setup_form">
+      <field name="name">salary hike form Form</field>
+      <field name="model">salary.hike.form</field>
+      <field name="arch" type="xml">
+
+              <form string="Salary Hike">
+
+                <sheet>
+
+
+                    <group>
+                        <group>
+                            <field name="employee_name" />
+
+                        </group>
+
+                    </group>
+
+
+                    <notebook>
+
+
+
+
+
+
+                            <page string="Salary Hike">
+
+
+
+                                <field name="order_line" mode="tree">
+
+
+
+                                <form>
+
+                                    <group>
+                                        <group >
+
+                                       <field name="employee_name" invisible="1"/>
+
+
+                                        <field name="entering_date" invisible="1"/>
+                                            <field name="current_salary" invisible="1"/>
+                                            <field name="increment_amount" invisible="1"/>
+
+
+
+                                        </group>
+
+                                    </group>
+
+
+                                </form>
+                                <tree string="salary hike" editable="bottom">
+                                    <!--<control>-->
+                                        <!--<create name="add_product_control" string="Add a Question"/>-->
+                                        <!--&lt;!&ndash;<create name="add_section_control" string="Add a section"/>&ndash;&gt;-->
+                                        <!--<create name="add_note_control" string="Add a note" context="{'default_display_type': 'line_note'}"/>-->
+                                    <!--</control>-->
+                                      <field name="employee_name" invisible="1"/>
+
+
+                                        <field name="entering_date"/>
+                                            <field name="current_salary"/>
+                                            <field name="increment_amount"/>
+
+
+                                    </tree>
+
+                            </field>
+
+                        </page>
+
+                        </notebook>
+
+
+                </sheet>
+              </form>
+      </field>
+    </record>
+
+
+
+
+
+
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="salary_hike_form_action_window">
+      <field name="name">Salary Hike Form</field>
+      <field name="res_model">salary.hike.form</field>
+      <field name="view_mode">tree,form</field>
+         <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create
+                </p>
+            </field>
+    </record>
+
+
+
+         <menuitem id="salary_increment_form" name="Salary Hike Form" parent="hr.menu_human_resources_configuration"  action="salary_hike_form_action_window" />
+
+  </data>
+</odoo>
