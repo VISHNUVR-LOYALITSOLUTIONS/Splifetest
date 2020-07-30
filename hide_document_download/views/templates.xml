@@ -1,0 +1,13 @@
+<odoo>
+    <data>
+ <template id="assets_backend" name="documents assets backend" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+
+            <script type="text/javascript" src="/hide_document_download/static/src/js/document_hide.js"/>
+             <script type="text/javascript" src="/hide_document_download/static/src/js/mail_document.js"/>
+            <!--<script type="text/javascript" src="/hide_document_download/static/src/js/pdf_file.js"/>-->
+        </xpath>
+    </template>
+
+    </data>
+</odoo>
