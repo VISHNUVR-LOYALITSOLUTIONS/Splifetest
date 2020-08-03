@@ -1,0 +1,12 @@
+<odoo>
+    <data>
+<report
+            id="action_caregiver_payslip_print"
+            model="hr.payslip"
+            string="Caregiver Payslip"
+            report_type="qweb-pdf"
+            name="caregiver_payslip_print.report_caregiver_payslip"
+            file="caregiver_payslip_print.report_caregiver_payslip"
+        />
+    </data>
+</odoo>
