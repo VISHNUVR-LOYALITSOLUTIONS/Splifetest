@@ -1,0 +1,13 @@
+<odoo>
+    <data>
+
+        <record model="res.groups" id="group_recruitment" >
+                <field name="name">Recruitment Questions Form</field>
+        </record>
+
+
+            <record id="recruitment_questions_form.myform_ID" model="ir.ui.menu" >
+                 <field name="groups_id" eval="[(6, 0, [ref('group_recruitment')])]"/>
+            </record>
+    </data>
+</odoo>

@@ -14,8 +14,6 @@ class Hrpayroll(models.Model):
         for i in self:
             if i.number_of_hours:
                 i.no_of_shift = (i.number_of_hours/i.work_entry_type_id.no_of_hours) if i.work_entry_type_id.no_of_hours!=0 else 0.0
-            else:
-                i.no_of_shift=0.0
 
 
 
