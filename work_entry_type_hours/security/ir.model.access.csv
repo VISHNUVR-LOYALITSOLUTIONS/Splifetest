@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_work_entry_type_hours_work_entry_type_hours,work_entry_type_hours.work_entry_type_hours,model_work_entry_type_hours_work_entry_type_hours,base.group_user,1,1,1,1

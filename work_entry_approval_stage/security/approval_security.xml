@@ -1,0 +1,9 @@
+<odoo>
+    <data>
+
+        <record model="res.groups" id="group_work_entry_validate_approval" >
+                <field name="name">Work Entry Validate Approval</field>
+        </record>
+
+    </data>
+</odoo>
