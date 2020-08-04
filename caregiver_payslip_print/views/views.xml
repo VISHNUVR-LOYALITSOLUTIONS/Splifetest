@@ -106,7 +106,7 @@
                                 <!--<th>Number of Days</th>-->
                                 <!--<th>Number of Hours</th>-->
                                 <!--<th>Number of Days</th>-->
-                                <th>Quantity/rate</th>
+                                <th>Rate/Shift</th>
                                 <th>Amount</th>
                             </tr>
                         </thead>
@@ -132,7 +132,6 @@
                             <tr t-foreach="o.line_ids.filtered(lambda line: line.appears_on_payslip)" t-as="line">
                                 <td><span t-field="line.code"/></td>
                                 <td><span t-field="line.name"/></td>
-                                <td></td>
                                 <td></td>
                                 <td><span t-field="line.quantity"/></td>
                                 <td><span t-esc="line.total"
