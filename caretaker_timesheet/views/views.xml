@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="caretaker_timesheet_view_tree_user" model="ir.ui.view">
+            <field name="name">account.analytic.line.view.tree.with.user</field>
+            <field name="model">account.analytic.line</field>
+            <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree"/>
+            <field name="mode">primary</field>
+            <field name="priority">10</field>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                  </xpath>
+
+               <!--<xpath expr="//field[@name='work_entry_type']" position="attributes">-->
+                    <!--<field attribute="invisible">1</field>-->
+                  <!--</xpath>-->
+                   <!--<xpath expr="//field[@name='name']/field[@name='project_id']" position="attributes">-->
+                    <!--<field name="invisible">1</field>-->
+                  <!--</xpath>-->
+
+                  <xpath expr="//field[@name='task_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                  </xpath>
+                <xpath expr="//field[@name='project_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                  </xpath>
+                  <xpath expr="//field[@name='unit_amount']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                  </xpath>
+
+
+
+                <xpath expr="//field[@name='date']" position="after">
+                  <field name="search_id"/>
+                  <field name="project_id" string="Name Of Patient"/>
+                  <field name="payment_amount" string="Payment"/>
+                  <field name="no_of_shift" string="No of Shifts Per day requested"/>
+                  <field name="rate_per_shift" string="Rate Per Shift"/>
+                  <field name="total_no_of_shift" sum="Total"/>
+                    <!--<field name="employee_id" required="1" options='{"no_open": True}'/>-->
+
+                  <!--<xpath expr="//field[@name='date']" position="atributes">-->
+                    <!--<field name="invisible">1</field>-->
+                  <!--</xpath>-->
+
+
+                </xpath>
+            </field>
+        </record>
+
+
+
+        <record id="caretaker_timesheet_view_form_user" model="ir.ui.view">
+            <field name="name">account.analytic.line.tree.with.user</field>
+            <field name="model">account.analytic.line</field>
+            <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form"/>
+            <!--<field name="mode">primary</field>-->
+            <!--<field name="priority">10</field>-->
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='company_id']" position="before">
+                    <field name="search_id"/>
+                  <field name="project_id" string="Name Of Patient"/>
+                  <field name="payment_amount" string="Payment"/>
+                  <field name="no_of_shift" string="No of Shifts Per day requested"/>
+                  <field name="rate_per_shift" string="Rate Per Shift"/>
+                  <field name="total_no_of_shift"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="caretaker_hr_timesheet_line_search" model="ir.ui.view">
+            <field name="name">account.analytic.line.search</field>
+            <field name="model">account.analytic.line</field>
+            <field name="arch" type="xml">
+                <search string="Timesheet">
+
+                  <field name="search_id"/>
+                  <field name="project_id" string="Name Of Patient"/>
+                  <field name="payment_amount" string="Payment"/>
+                  <field name="no_of_shift" string="No of Shifts Per day requested"/>
+                  <field name="rate_per_shift" string="Rate Per Shift"/>
+                    <field name="total_no_of_shift"/>
+                    <field name="date"/>
+                    <field name="employee_id"/>
+                    <field name="project_id"/>
+                    <field name="task_id"/>
+                    <field name="name"/>
+                    <filter name="mine" string="My Timesheets" domain="[('user_id', '=', uid)]"/>
+                    <separator/>
+                    <filter name="month" string="Date" date="date"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Employee" name="groupby_employee" domain="[]" context="{'group_by': 'employee_id'}"/>
+                        <filter string="Project" name="groupby_project" domain="[]" context="{'group_by': 'project_id'}"/>
+                        <filter string="Task" name="groupby_task" domain="[]" context="{'group_by': 'task_id'}"/>
+                        <filter string="Date" name="groupby_date" domain="[]" context="{'group_by': 'date'}" help="Timesheet by Date"/>
+
+                        <filter string="Search Id" name="groupby_employee" domain="[]" context="{'group_by': 'employee_id'}"/>
+                        <!--<filter string="Project" name="groupby_project" domain="[]" context="{'group_by': 'project_id'}"/>-->
+                        <!--<filter string="Task" name="groupby_task" domain="[]" context="{'group_by': 'task_id'}"/>-->
+                        <!--<filter string="Date" name="groupby_date" domain="[]" context="{'group_by': 'date'}" help="Timesheet by Date"/>-->
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+
+
+
+
+
+        <record id="caretaker_timesheet_action_all" model="ir.actions.act_window">
+            <field name="name">Caretaker Timesheet</field>
+            <field name="res_model">account.analytic.line</field>
+            <field name="search_view_id" ref="caretaker_hr_timesheet_line_search"/>
+          <field name="view_mode">tree,form</field>
+            <!--<field name="domain">[('project_id', '!=', False)]</field>-->
+           <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Record a new activity
+              </p><p>
+                You can register and track your workings hours by project every
+                day. Every time spent on a project will become a cost and can be re-invoiced to
+                customers if required.
+              </p>
+            </field>
+            <!--<field name="context">{-->
+                <!--'search_default_week':1,-->
+                <!--'search_default_groupby_employee':1,-->
+                <!--'search_default_groupby_project':1,-->
+                <!--'search_default_groupby_task':1,-->
+            <!--}</field>-->
+        </record>
+
+        <record id="caretaker_timesheet_action_view_all_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="4"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="caretaker_timesheet_view_tree_user"/>
+            <field name="act_window_id" ref="caretaker_timesheet_action_all"/>
+        </record>
+
+        <record id="caretaker_timesheet_action_view_all_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="5"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="caretaker_timesheet_view_form_user"/>
+            <field name="act_window_id" ref="caretaker_timesheet_action_all"/>
+        </record>
+
+        <menuitem id="caretaker_timesheet_menu_activity_all"
+            name="Caretaker Timesheet"
+            parent="hr_timesheet.menu_hr_time_tracking"
+            action="caretaker_timesheet_action_all"/>
+
+    </data>
+</odoo>

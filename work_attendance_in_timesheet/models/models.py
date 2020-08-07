@@ -97,7 +97,7 @@ class Hrprojects(models.Model):
         so = self.env['account.analytic.line'].create(so_order)
 
 
-        return
+        return so
 
         # self.ensure_one()
         # action = self.env.ref('hr_timesheet.hr_timesheet_line_tree')
