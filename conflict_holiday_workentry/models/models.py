@@ -12,12 +12,37 @@ class workentry_Conflict(models.Model):
     def allsundays(self,years):
         sunndays =[]
         year = int(years)
+        # out = []
         d = date(year, 1, 1)  # January 1st
-        d += timedelta(days=6 - d.weekday())  # First Sunday
-        while d.year == year:
-            yield d
-            d += timedelta(days=7)
-            sunndays.append(str(d.strftime('%Y-%m-%d')))
+
+        global_attendance = self.env.user.company_id.resource_calendar_id.attendance_ids
+
+        # attendance = self.env['ir.config_parameter'].sudo().get_param('hr.resource_calandar_idf') or False
+        # att= self.env.user.company_id.resource_calendar_id
+
+        # global_attendance = self.env['resource.calendar.attendance'].search([('user_id', '=', self.env.uid)])
+        # global_att = self.env['resource.calendar'].search([('user_id', '=', self.env.uid)])
+        # t_att = [j.dayofweek for i in global_att for j in i.attendance_ids]
+        tot_att =[i.dayofweek for i in global_attendance]
+        tot_att = list(set(tot_att))
+        sample_week = ['0','1','2','3','4','5','6']
+
+        attendance_list = [item for item in sample_week if not item in tot_att]
+
+        for list_one in attendance_list:
+            s=int(list_one)
+            d = date(year, 1, 1)
+            d += timedelta(days=s - d.weekday())  # First Sunday
+            while d.year == year:
+                yield d
+                d += timedelta(days=7)
+                sunndays.append(str(d.strftime('%Y-%m-%d')))
+
+        # d += timedelta(days=6 - d.weekday())  # First Sunday
+        # while d.year == year:
+        #     yield d
+        #     d += timedelta(days=7)
+        #     sunndays.append(str(d.strftime('%Y-%m-%d')))
         # yield sunndays
 
 
@@ -43,7 +68,7 @@ class workentry_Conflict(models.Model):
     #         'date_stop': self.date_stop,
     #         # 'project_id': self.project_id.id,
     #         # 'total_attendance': self.total_work_attendance,
-    #         # 'so_line':1
+    #         # 'so_line':1resource.calendar
     #
     #     }
     #
