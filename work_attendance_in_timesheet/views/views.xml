@@ -1,0 +1,101 @@
+<odoo>
+  <data>
+
+
+     <record id="totalhr_total_attendance" model="ir.ui.view">
+            <field name="name">hr.attendance.sheet</field>
+            <field name="model">account.analytic.line</field>
+            <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form" />
+            <field name="arch" type="xml">
+                 <xpath expr="//sheet/group/group/field[@name='unit_amount']" position="after">
+                    <field name="total_attendance" widget="timesheet_uom" invisible="1"/>
+                     <!--<notebook>-->
+                 <!--<page string="Work Entry" name="work_entry" attrs="{'invisible': [('hr_work_entry_ids', '=', [])]}">-->
+                    <field name="work_entry_type"/>
+                <!--</page>-->
+            <!--</notebook>-->
+                 </xpath>
+
+
+            </field>
+        </record>
+
+
+       <record id="tree_totalhr_total_attendance" model="ir.ui.view">
+            <field name="name">hr.attendance.tree</field>
+            <field name="model">account.analytic.line</field>
+            <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree" />
+            <field name="arch" type="xml">
+                 <field name='unit_amount' position="before">
+                    <field name="total_attendance" widget="timesheet_uom" invisible="1"/>
+                     <!--<notebook>-->
+                 <!--<page string="Work Entry" name="work_entry" attrs="{'invisible': [('hr_work_entry_ids', '=', [])]}">-->
+                    <field name="work_entry_type"/>
+                <!--</page>-->
+            <!--</notebook>-->
+                 </field>
+
+
+            </field>
+        </record>
+
+
+
+     <record id="hr_total_grid" model="ir.ui.view">
+            <field name="name">hr.attendance.grid</field>
+            <field name="model">account.analytic.line</field>
+            <field name="inherit_id" ref="timesheet_grid.timesheet_view_form" />
+            <field name="arch" type="xml">
+                 <xpath expr="//sheet/group/group/field[@name='date']" position="after">
+                    <field name="total_attendance" widget="timesheet_uom" invisible="1"/>
+                     <!--<notebook position="inside">-->
+                <!--<page string="Work Entry" name="work_entry" attrs="{'invisible': [('hr_work_entry_ids', '=', [])]}">-->
+                    <field name="work_entry_type"/>
+                <!--</page>-->
+            <!--</notebook>-->
+                 </xpath>
+
+
+            </field>
+        </record>
+
+
+     <record id="attendtotal_hr_work_entry_form" model="ir.ui.view">
+            <field name="name">hr.work.entry.grid</field>
+            <field name="model">hr.work.entry</field>
+            <field name="inherit_id" ref="hr_work_entry.hr_work_entry_view_form" />
+            <field name="arch" type="xml">
+
+
+
+                 <xpath expr="//sheet/div[@class='oe_title']" position="before">
+
+                <field name="time_sheet_ids" invisible="1"/>
+                     <div class="oe_button_box" align="right" style="padding:10px;">
+                <button style="border: 1px solid black;" name="action_view_work"
+                        confirm="Are you sure you want to proceed this as time sheet entry?"
+                    type="object"
+                    class="oe_stat_button"
+                        attrs="{'invisible':[('total_work_attendance','!=',0.0)]}"
+                    icon="fa-pencil-square-o">
+                    <div class="o_form_field o_stat_info">
+                        <span class="o_stat_text">Time Sheet</span>
+                    </div>
+                </button>
+            </div>
+                </xpath>
+                 <xpath expr="//sheet/group/group/field[@name='work_entry_type_id']" position="after">
+                    <field name="project_id" options="{'no_create_edit':True}"/>
+                   <field name="project_task" options="{'no_create_edit':True}"/>
+                     <field name="total_work_attendance" invisible="1"/>
+                 </xpath>
+            </field>
+        </record>
+
+
+
+
+
+
+  </data>
+</odoo>

@@ -1,0 +1,326 @@
+<odoo>
+  <data>
+
+
+           <!--<record model="ir.ui.view" id="type_setup_form">-->
+      <!--<field name="name">type_setup_form</field>-->
+      <!--<field name="model">room.type</field>-->
+      <!--<field name="arch" type="xml">-->
+        <!--<form>-->
+          <!--<sheet>-->
+                        <!--<group>-->
+
+          <!--<field name="name" />-->
+
+                        <!--</group>-->
+          <!--</sheet>-->
+        <!--</form>-->
+      <!--</field>-->
+    <!--</record>-->
+
+    <!--&lt;!&ndash; actions opening views on models &ndash;&gt;-->
+
+    <!--<record model="ir.actions.act_window" id="type_configuration_setup_action_window">-->
+      <!--<field name="name">Type</field>-->
+      <!--<field name="res_model">room.type</field>-->
+      <!--<field name="view_mode">tree,form</field>-->
+    <!--</record>-->
+
+
+      <!--<menuitem name="Living Type" id="type_setup_submenu" parent="rooms_setup_main"-->
+              <!--action="type_configuration_setup_action_window"/>-->
+
+
+
+
+
+       <!--<record model="ir.ui.view" id="occupancy_setup_form">-->
+      <!--<field name="name">occupancy_setup_form</field>-->
+      <!--<field name="model">room.occupy</field>-->
+      <!--<field name="arch" type="xml">-->
+        <!--<form>-->
+          <!--<sheet>-->
+                        <!--<group>-->
+
+          <!--<field name="name" />-->
+
+                        <!--</group>-->
+          <!--</sheet>-->
+        <!--</form>-->
+      <!--</field>-->
+    <!--</record>-->
+
+    <!--&lt;!&ndash; actions opening views on models &ndash;&gt;-->
+
+    <!--<record model="ir.actions.act_window" id="occupancy_configuration_setup_action_window">-->
+      <!--<field name="name">Occupancy Type</field>-->
+      <!--<field name="res_model">room.occupy</field>-->
+      <!--<field name="view_mode">tree,form</field>-->
+    <!--</record>-->
+
+
+      <!--<menuitem name="Occupancy Type" id="occupancy_setup_submenu" parent="rooms_setup_main"-->
+              <!--action="occupancy_configuration_setup_action_window"/>-->
+
+
+
+
+       <!--<record model="ir.ui.view" id="flat_setup_form">-->
+      <!--<field name="name">flat_setup_form</field>-->
+      <!--<field name="model">room.flat</field>-->
+      <!--<field name="arch" type="xml">-->
+        <!--<form>-->
+          <!--<sheet>-->
+                        <!--<group>-->
+
+          <!--<field name="name" />-->
+
+                        <!--</group>-->
+          <!--</sheet>-->
+        <!--</form>-->
+      <!--</field>-->
+    <!--</record>-->
+
+    <!--&lt;!&ndash; actions opening views on models &ndash;&gt;-->
+
+    <!--<record model="ir.actions.act_window" id="flat_configuration_setup_action_window">-->
+      <!--<field name="name">flat</field>-->
+      <!--<field name="res_model">room.flat</field>-->
+      <!--<field name="view_mode">tree,form</field>-->
+    <!--</record>-->
+
+
+      <!--<menuitem name="Flat" id="flat_setup_submenu" parent="rooms_setup_main"-->
+              <!--action="flat_configuration_setup_action_window"/>-->
+
+
+
+       <!--<record model="ir.ui.view" id="flat_setup_form">-->
+      <!--<field name="name">flat_setup_form</field>-->
+      <!--<field name="model">room.flat</field>-->
+      <!--<field name="arch" type="xml">-->
+        <!--<form>-->
+          <!--<sheet>-->
+                        <!--<group>-->
+
+          <!--<field name="name" />-->
+
+                        <!--</group>-->
+          <!--</sheet>-->
+        <!--</form>-->
+      <!--</field>-->
+    <!--</record>-->
+
+    <!--&lt;!&ndash; actions opening views on models &ndash;&gt;-->
+
+    <!--<record model="ir.actions.act_window" id="flat_configuration_setup_action_window">-->
+      <!--<field name="name">flat</field>-->
+      <!--<field name="res_model">room.flat</field>-->
+      <!--<field name="view_mode">tree,form</field>-->
+    <!--</record>-->
+
+
+      <!--<menuitem name="Flat" id="flat_setup_submenu" parent="rooms_setup_main"-->
+              <!--action="flat_configuration_setup_action_window"/>-->
+
+
+
+
+
+
+    <!--<record model="ir.ui.view" id="floor_setup_form">-->
+      <!--<field name="name">floor_setup_form</field>-->
+      <!--<field name="model">room.floor</field>-->
+      <!--<field name="arch" type="xml">-->
+        <!--<form>-->
+          <!--<sheet>-->
+                        <!--<group>-->
+
+          <!--<field name="name" />-->
+
+                        <!--</group>-->
+          <!--</sheet>-->
+        <!--</form>-->
+      <!--</field>-->
+    <!--</record>-->
+
+    <!--&lt;!&ndash; actions opening views on models &ndash;&gt;-->
+
+    <!--<record model="ir.actions.act_window" id="floor_configuration_setup_action_window">-->
+      <!--<field name="name">floors</field>-->
+      <!--<field name="res_model">room.floor</field>-->
+      <!--<field name="view_mode">tree,form</field>-->
+    <!--</record>-->
+
+
+      <!--<menuitem name="Floors" id="floor_setup_submenu" parent="rooms_setup_main"-->
+              <!--action="floor_configuration_setup_action_window"/>-->
+    <!-- explicit list view definition -->
+
+
+
+     <record model="ir.ui.view" id="room_room_tree_view">
+            <field name="name">room.room.tree</field>
+            <field name="model">room.room</field>
+            <field name="arch" type="xml">
+                <tree string="Rooms">
+                      <field name="name" />
+                    <field name="floor_name"/>
+                    <field name="flat_name"/>
+                    <field name="occupy_type"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+
+
+
+    <record model="ir.ui.view" id="room_setup_form">
+      <field name="name">room_setup_form</field>
+      <field name="model">room.room</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+                        <group>
+
+          <field name="name" />
+          <field name="floor_name"/>
+          <field name="flat_name"/>
+          <field name="occupy_type"/>
+          <field name="status"/>
+                        </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+       <record id="room_room_checkout_graph" model="ir.ui.view">
+          <field name="name">room.room.graph</field>
+
+    <field name="model">room.room</field>
+    <field name="arch" type="xml">
+      <graph>
+        <field name="name"/>
+          <field name="floor_name" type="measure"/>
+          <field name="flat_name" type="measure"/>
+          <field name="occupy_type" type="measure"/>
+          <field name="status" type="measure"/>
+      </graph>
+
+    </field>
+  </record>
+
+
+
+      <record model="ir.ui.view" id="view_report_room_room_kanban">
+    <field name="name">room.room.kanban</field>
+    <field name="model">room.room</field>
+    <field name="type">kanban</field>
+    <field name="arch" type="xml">
+        <kanban>
+            <templates>
+            <t t-name="kanban-box">
+                <div class="oe_product_vignette oe_kanban_global_click">
+                        <div class="oe_product_desc">
+                            <h3><field name="name" /></h3>
+                            <h4>
+                                <field name="floor_name"/>
+                            </h4>
+                            <ul>
+                                <field name="flat_name"/><br/>
+                                 <field name="occupy_type"/><br/>
+                                 <field name="status"/>
+                            </ul>
+                        </div>
+                    </div>
+                </t>
+            </templates>
+        </kanban>
+    </field>
+</record>
+
+
+
+
+
+
+    <!-- actions opening views on models -->
+
+
+      <record id="room_configuration_setup_action_window" model="ir.actions.act_window">
+        <field name="name">Rooms</field>
+        <field name="res_model">room.room</field>
+        <!--<field name="view_type">form</field>-->
+        <field name="view_mode">kanban,tree,form,graph</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create
+            </p>
+        </field>
+    </record>
+
+
+
+    <!--<record model="ir.actions.act_window" id="room_configuration_setup_action_window">-->
+      <!--<field name="name">Rooms</field>-->
+      <!--<field name="res_model">room.room</field>-->
+      <!--<field name="view_mode">kanban,tree,form,graph</field>-->
+       <!--<field name="help" type="html">-->
+                <!--<p class="o_view_nocontent_smiling_face">Create-->
+                <!--</p>-->
+            <!--</field>-->
+    <!--</record>-->
+
+
+    <!-- server action to the one above -->
+
+    <!--<record model="ir.actions.server" id="reminder_setup.action_server">-->
+      <!--<field name="name">reminder_setup server</field>-->
+      <!--<field name="model_id" ref="model_reminder_setup_reminder_setup"/>-->
+      <!--<field name="state">code</field>-->
+      <!--<field name="code">-->
+        <!--action = {-->
+          <!--"type": "ir.actions.act_window",-->
+          <!--"view_mode": "tree,form",-->
+          <!--"res_model": model._name,-->
+        <!--}-->
+      <!--</field>-->
+    <!--</record>-->
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="Rooms" id="rooms_setup"/>
+
+
+    <!--<menuitem name="Room Charts" id="rooms_chart_submenu" parent="rooms_setup"-->
+              <!--action="roomchart_setup_action_window"/>-->
+
+
+
+      <menuitem id="rooms_setup_main" name="Configurations" parent="rooms_setup" sequence="2"/>
+
+
+
+
+    <menuitem name="Rooms" id="rooms_setup_submenu" parent="rooms_setup_main"
+              action="room_configuration_setup_action_window"/>
+
+
+
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="conflict_holiday_workentry.menu_1" parent="conflict_holiday_workentry.menu_root"/>
+    <menuitem name="Menu 2" id="conflict_holiday_workentry.menu_2" parent="conflict_holiday_workentry.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="conflict_holiday_workentry.menu_1_list" parent="conflict_holiday_workentry.menu_1"
+              action="conflict_holiday_workentry.action_window"/>
+    <menuitem name="Server to list" id="conflict_holiday_workentry" parent="conflict_holiday_workentry.menu_2"
+              action="conflict_holiday_workentry.action_server"/>
+-->
+
+  </data>
+</odoo>

@@ -1,0 +1,63 @@
+
+<odoo>
+  <data>
+
+
+
+       <record id="update_work_state_action" model="ir.ui.view">
+            <field name="name">Update State</field>
+            <field name="model">update.state.val</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="state"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="update_state" string="Update" type="object"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+
+       <record id="update_state_to_batch_action" model="ir.actions.act_window">
+        <field name="name">Update State</field>
+        <field name="res_model">update.state.val</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="update_work_state_action"/>
+        <field name="target">new</field>
+    </record>
+
+
+      <menuitem id="update_state_for_action_window" name="Update State"
+                  parent="hr_payroll.menu_hr_payroll_configuration" action="update_state_to_batch_action"/>
+
+
+
+      <!--<record id="action_set_salesperson" model="ir.actions.server">-->
+        	<!--<field name="name">Update State</field>-->
+        	<!--<field name="model_id" ref="base.model_update.state.val"/>-->
+        	<!--<field name="state">code</field>-->
+    	<!--</record>-->
+
+
+      <act_window id="update_state_action_in_work_entry"
+                  name="Update State"
+            res_model="update.state.val"
+            binding_model="hr.work.entry"
+                  binding_views="list"
+            view_mode="form"
+            target="new"
+
+        />
+
+
+
+
+
+  </data>
+</odoo>

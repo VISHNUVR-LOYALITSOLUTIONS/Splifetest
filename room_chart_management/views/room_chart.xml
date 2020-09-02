@@ -1,0 +1,173 @@
+<odoo>
+  <data>
+
+
+       <record model="ir.ui.view" id="room_chart_tree_view">
+            <field name="name">Room chart tree</field>
+            <field name="model">room.chart</field>
+            <field name="arch" type="xml">
+                <tree string="Rooms">
+                    <field name="occupant_name" />
+                    <field name="occupy_type"/>
+                    <field name="living_type"/>
+                      <field name="tmp_chart_room"/>
+                     <field name="tmp_chart_floor"/>
+                     <field name="tmp_chart_flat"/>
+                     <field name="tmp_chart_status"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+
+
+
+
+    <record model="ir.ui.view" id="room_chart_setup_form">
+      <field name="name">Room Chart Form</field>
+      <field name="model">room.chart</field>
+      <field name="arch" type="xml">
+
+              <form string="Room Chart">
+                <header>
+
+                    <button name="action_confirm" type="object" string="Confirm"/>
+                    <button name="action_vacant" type="object" string="Vacant"/>
+                    <field name="current_status" widget="statusbar" statusbar_visible="vacant,occupy"/>
+                </header>
+                <sheet>
+
+                    <field name="name" style="font-size:14px;"/>
+
+                    <group>
+                        <group>
+                            <field name="occupant_name" />
+
+                              <field name="entering_date"/>
+                        </group>
+                        <group>
+                            <field name="occupy_type"/>
+
+                            <field name="living_type"/>
+                        </group>
+                    </group>
+
+                     <field name="tmp_chart_room" invisible="1"/>
+                     <field name="tmp_chart_floor" invisible="1"/>
+                     <field name="tmp_chart_flat" invisible="1"/>
+                     <field name="tmp_chart_status" invisible="1"/>
+
+
+                    <notebook>
+
+
+                        <page string="Rooms">
+                                <field name="order_line">
+
+                                    <form>
+
+                                    <group>
+                                        <group>
+
+                                            <field name="chart_room"/>
+                                            <field name="chart_floor"/>
+                                            <field name="chart_flat"/>
+                                             <field name="chart_status"/>
+                                        </group>
+                                    </group>
+                                </form>
+
+                                    <tree string="Room">
+                                         <field name="chart_room"/>
+                                            <field name="chart_floor"/>
+                                            <field name="chart_flat"/>
+                                             <field name="chart_status"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+
+
+                </sheet>
+              </form>
+      </field>
+    </record>
+
+
+
+
+      <record id="room_chart_checkout_graph" model="ir.ui.view">
+          <field name="name">room.chart.graph</field>
+
+    <field name="model">room.chart</field>
+    <field name="arch" type="xml">
+      <graph>
+        <field name="occupant_name" type="measure"/>
+                    <field name="occupy_type" type="measure"/>
+                    <field name="living_type" type="measure"/>
+                     <field name="tmp_chart_room" type="measure"/>
+                     <field name="tmp_chart_floor" type="measure"/>
+                     <field name="tmp_chart_flat" type="measure"/>
+                     <field name="tmp_chart_status" type="measure"/>
+      </graph>
+
+    </field>
+  </record>
+
+
+
+       <record model="ir.ui.view" id="view_report_room_chart_kanban">
+    <field name="name">room.chart.kanban</field>
+    <field name="model">room.chart</field>
+    <field name="type">kanban</field>
+    <field name="arch" type="xml">
+        <kanban>
+            <templates>
+            <t t-name="kanban-box">
+                <div class="oe_product_vignette oe_kanban_global_click">
+                        <div class="oe_product_desc">
+                            <h3><field name="occupant_name" /></h3>
+                            <h4>
+                                <field name="occupy_type"/><br/>
+                                <field name="living_type"/>
+                            </h4>
+                            <ul>
+                               <field name="tmp_chart_room"/><br/>
+                             <field name="tmp_chart_floor"/><br/>
+                             <field name="tmp_chart_flat"/><br/>
+                             <field name="tmp_chart_status"/>
+                            </ul>
+                        </div>
+                    </div>
+                </t>
+            </templates>
+        </kanban>
+    </field>
+</record>
+
+
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="roomchart_setup_action_window">
+      <field name="name">Room Chart</field>
+      <field name="res_model">room.chart</field>
+      <field name="view_mode">tree,form,kanban,graph</field>
+         <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create
+                </p>
+            </field>
+    </record>
+
+
+
+
+
+    <menuitem name="Room Charts" id="rooms_chart_submenu" parent="rooms_setup" sequence="1"
+              action="roomchart_setup_action_window"/>
+
+
+  </data>
+</odoo>

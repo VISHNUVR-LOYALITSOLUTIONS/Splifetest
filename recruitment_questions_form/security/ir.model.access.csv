@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_recruitment_questions_form,recruitment.questions.form,model_recruitment_questions_form,base.group_user,1,1,1,1
+access_recruitment_questions_form_line,recruitment.questions.form.line,model_recruitment_questions_form_line,base.group_user,1,1,1,1
+access_recruitment_questions,recruitment.questions,model_recruitment_questions,base.group_user,1,1,1,1
+access_recruitment_overall_option,overall.option,model_overall_option,base.group_user,1,1,1,1

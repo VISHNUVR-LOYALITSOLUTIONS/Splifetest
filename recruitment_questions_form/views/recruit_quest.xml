@@ -1,0 +1,56 @@
+<odoo>
+  <data>
+
+
+
+
+
+     <record model="ir.ui.view" id="new_recruitment_questions_tree_view">
+            <field name="name">recruitment.questions.tree</field>
+            <field name="model">recruitment.questions</field>
+            <field name="arch" type="xml">
+                <tree string="Recruitment Questions">
+                      <field name="name" />
+
+                </tree>
+            </field>
+        </record>
+
+
+
+    <record model="ir.ui.view" id="new_recruitment_questions_setup_form">
+      <field name="name">recruitment.questions_form</field>
+      <field name="model">recruitment.questions</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+                        <group>
+
+          <field name="name" />
+
+                        </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="new_recruitment_questions_setup_action_window">
+      <field name="name">Recruitment Questions</field>
+      <field name="res_model">recruitment.questions</field>
+      <field name="view_mode">tree,form</field>
+       <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create
+                </p>
+            </field>
+    </record>
+
+
+    <menuitem name="Recruitment Questions" id="new_recruitment_questions_setup_submenu"
+              parent="hr_recruitment.menu_hr_recruitment_configuration"
+              action="new_recruitment_questions_setup_action_window"/>
+
+
+  </data>
+</odoo>
