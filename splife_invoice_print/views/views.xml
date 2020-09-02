@@ -1,0 +1,634 @@
+<odoo>
+    <data>
+
+       <template id="report_splife_document">
+                    <t t-call="web.html_container">
+<!--                    <t t-foreach="docs" t-as="o">-->
+
+<!--               <t t-call="splife_invoice_print.splife_invoice_external_layout_vat">-->
+                <t t-set="o" t-value="o.with_context({'lang':o.env.user.lang})"/>
+
+                <div class="page">
+                    <style>
+                        .Row {
+                                 display: table;
+                                 width: 100%; /*Optional*/
+                             }
+                        @font-face {
+                            font-family: 'Calibri';
+                            src: url('/splife_invoice_print/static/src/fonts/calibri.ttf') format('truetype');
+                        }
+
+                    </style>
+                     <div class="row">
+
+
+                         <table style="width: 100%;border:1px solid black;border-collapse:collapse;border-width:2px;padding:3px;">
+
+                             <tr>
+                                 <td width="27%" colspan="2" align="left" style="padding:3px;">
+
+
+
+
+                                   <img
+                    t-if="res_company.logo"
+                    t-att-src="image_data_uri(res_company.logo)"
+                    alt="Logo" style="max-height:90px;"
+                />
+
+
+<!--                    <img src="${'/logo.png?company=%s' % object.company_id.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${'%s' % object.company_id.name}"/>-->
+
+                                 </td>
+                                 <td colspan="3" width="40%">
+
+                                     <div align="center">
+
+                                         <b>
+                                             FORM XIII-See Rule 29(2)<br/>
+                                             <t t-esc="o.company_id.name"/><br/>
+                                             <u><t t-esc="o.company_id.street"/>
+
+                                <span t-field="res_company.partner_id.street"/>
+                                <span t-field="res_company.partner_id.street2"/>
+                                   <span t-field="res_company.partner_id.city"/>
+                                <span t-field="res_company.state_id.name"/>
+                                <span t-field="res_company.partner_id.zip"/>
+                               <span t-field="res_company.country_id.name"/>
+
+
+                                             </u><br/>
+                                             Pay Slip for The month Of
+<!--                                             <span t-esc="o.date_to.strftime('%B')"/>-->
+
+<!--                                             <span t-esc="o.date_to.strftime('%Y')"/>-->
+
+                                         <t t-esc="datetime.datetime.strptime(str(o.date_to), '%Y-%m-%d').strftime('%B')"/>
+                                         <t t-esc="datetime.datetime.strptime(str(o.date_to), '%Y-%m-%d').strftime('%Y')"/>
+
+
+
+
+                                         </b>
+                                     </div>
+
+                                 </td>
+                                 <td colspan="2" width="33%">
+
+                                 </td>
+                             </tr>
+
+
+                             <tr style="border-top:1px solid black;border-collapse:collapse;padding:3px;">
+                                 <td width="8%" style="padding:3px;">
+                                     <b>EmpCode
+
+                                     </b>
+                                 </td>
+
+                                 <td width="19%" style="padding:3px;">
+                                     <b>
+                                         :<![CDATA[&nbsp;]]><t t-esc="o.employee_id.barcode"/>
+                                     </b>
+                                 </td>
+
+                                  <td width="10%" style="padding:3px;border-left:1px solid black;border-collapse:collapse;">
+                                     <b>
+                                         Department
+                                     </b>
+                                 </td>
+                                  <td colspan="2" width="30%" style="padding:3px;">
+                                     <b>
+                                         :<![CDATA[&nbsp;]]><t t-esc="o.employee_id.department_id.name"/>
+                                     </b>
+                                 </td>
+
+                                   <td width="10%" style="padding:3px;border-left:1px solid black;border-collapse:collapse;">
+                                     <b>
+                                         UAN NO
+                                     </b>
+                                 </td>
+                                  <td width="23%" style="padding:3px;">
+                                     <b>
+                                         :<![CDATA[&nbsp;]]><t t-esc="o.employee_id.x_studio_uan_number"/>
+                                     </b>
+                                 </td>
+                             </tr>
+
+
+
+
+                                                   <tr>
+                                 <td style="padding:3px;">
+                                     <b>Name
+
+                                     </b>
+                                 </td>
+
+                                 <td style="padding:3px;">
+                                     <b>
+                                         :<![CDATA[&nbsp;]]><t t-esc="o.employee_id.name"/>
+                                     </b>
+                                 </td>
+
+                                  <td style="padding:3px;border-left:1px solid black;border-collapse:collapse;">
+                                     <b>
+                                         Designation
+                                     </b>
+                                 </td>
+                                  <td colspan="2" style="padding:3px;">
+                                     <b>
+                                         :<![CDATA[&nbsp;]]><t t-esc="o.employee_id.job_id.name"/>
+                                     </b>
+                                 </td>
+
+                                   <td style="padding:3px;border-left:1px solid black;border-collapse:collapse;">
+                                     <b>
+                                         A/C NO
+                                     </b>
+                                 </td>
+                                  <td style="padding:3px;">
+                                     <b>
+                                         :<![CDATA[&nbsp;]]><t t-esc="o.employee_id.acc_number"/>
+                                     </b>
+                                 </td>
+                             </tr>
+
+
+
+                                                   <tr>
+                                 <td style="padding:3px;">
+                                     <b>DOJ
+
+                                     </b>
+                                 </td>
+
+                                 <td style="padding:3px;">
+                                     <b>
+                                         :<![CDATA[&nbsp;]]>
+
+                                     <t t-esc="datetime.datetime.strptime(str(o.employee_id.x_studio_date_of_joining), '%Y-%m-%d').strftime('%d-%m-%Y')"/>
+
+
+<!--                                         <t t-esc="o.employee_id.x_studio_date_of_joining"/>-->
+                                     </b>
+                                 </td>
+
+                                  <td style="padding:3px;border-left:1px solid black;border-collapse:collapse;">
+                                     <b>
+                                         Location
+                                     </b>
+                                 </td>
+                                  <td colspan="2" style="padding:3px;">
+                                     <b>
+                                         :<![CDATA[&nbsp;]]><t t-esc="o.employee_id.work_location"/>
+                                     </b>
+                                 </td>
+
+                                   <td style="padding:3px;border-left:1px solid black;border-collapse:collapse;">
+                                     <b>
+                                         PF NO
+                                     </b>
+                                 </td>
+                                  <td style="padding:3px;">
+                                     <b>
+                                         :<![CDATA[&nbsp;]]><t t-esc="o.employee_id.x_studio_pf_number"/>
+                                     </b>
+                                 </td>
+                             </tr>
+                                                   <tr>
+                                 <td style="padding:3px;">
+                                     <b>
+
+                                     </b>
+                                 </td>
+
+                                 <td>
+                                     <b>
+                                         <![CDATA[&nbsp;]]>
+                                     </b>
+                                 </td>
+
+                                  <td style="padding:3px;border-left:1px solid black;border-collapse:collapse;">
+                                     <b>
+                                         PayMode
+                                     </b>
+                                 </td>
+                                  <td colspan="2" style="padding:3px;">
+                                     <b>
+                                         :<![CDATA[&nbsp;]]>
+<!--                                         <t t-esc="o.employee_id.department_id.name"/>-->
+                                     </b>
+                                 </td>
+
+                                   <td style="padding:3px;border-left:1px solid black;border-collapse:collapse;">
+                                     <b>
+                                         ESI NO
+                                     </b>
+                                 </td>
+                                  <td style="padding:3px;">
+                                     <b>
+                                         :<![CDATA[&nbsp;]]><t t-esc="o.employee_id.x_studio_esi_number"/>
+                                     </b>
+                                 </td>
+                             </tr>
+
+                               <tr height="20">
+                                 <td style="padding:3px;"><b></b></td>
+                                   <td><b><![CDATA[&nbsp;]]></b></td>
+                                   <td style="padding:3px;border-left:1px solid black;border-collapse:collapse;"><b></b></td>
+                                  <td colspan="2" style="padding:3px;"><b></b></td>
+                                   <td style="padding:3px;border-left:1px solid black;border-collapse:collapse;"><b></b></td>
+                                  <td style="padding:3px;"><b></b></td>
+                             </tr>
+
+
+                             <tr style="border: 1px solid black;border-collapse: collapse;" >
+                               <t t-set="tot_val" t-value="(((datetime.datetime.strptime(str(o.date_to), '%Y-%m-%d'))-(datetime.datetime.strptime(str(o.date_from), '%Y-%m-%d'))).days)+1"/>
+                            <t t-set="lop_val" t-value="0"/>
+
+                                 <td style="padding:3px;" align="left" colspan="2"><b>Total Days<![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>:<![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>
+                                 <t t-esc="(((datetime.datetime.strptime(str(o.date_to), '%Y-%m-%d'))-(datetime.datetime.strptime(str(o.date_from), '%Y-%m-%d'))).days)+1"/>
+
+
+                                 </b></td>
+                                 <td style="padding:3px;border-left:1px solid black;border-collapse:collapse;" align="left" colspan="3"><b>LOP<![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>:<![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>
+                                     <t t-foreach="o.worked_days_line_ids" t-as="l" >
+                                         <t t-if="l.work_entry_type_id.code=='Unpaid'">
+
+                                          <t t-set="lop_val" t-value="lop_val+number_of_days"/>
+                                         </t>
+                                      </t>
+                                     <t t-esc="lop_val"/>
+
+                                 </b></td>
+                                 <td style="padding:3px;border-left:1px solid black;border-collapse:collapse;" align="left" colspan="2"><b>Paid Days<![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>:<![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>
+                                 <t t-esc="tot_val-lop_val"/>
+
+
+                                 </b></td>
+                             </tr>
+
+
+
+
+                             <tr width="100%">
+
+
+                                    <td width="77%" colspan="4">
+                                                    <table style="padding:3px;Text-align:center; font-weight:bold;border-right: 1px solid black;border: 1px solid black;border-collapse: collapse;">
+                                                        <tr style="padding:3px;background-color:#B8B8B8;Text-align:center; font-weight:bold;border-right: 1px solid black;border: 1px solid black;border-collapse: collapse;background-color:#B0B0B0;">
+                                                             <td width="27%" colspan="2" align="left" style="padding:3px;border-right: 1px solid black;border-collapse: collapse;">Earnings</td>
+                                                            <td width="15%" align="center" style="padding:3px;border-right: 1px solid black;border-collapse: collapse;">Actual</td>
+                                                            <td width="15%" align="center" style="padding:3px;border-right: 1px solid black;border-collapse: collapse;">Amount</td>
+                                                         </tr>
+
+
+                                                         <t t-set="gross_actual" t-value="0"/>
+                                    <t t-set="gross_amount" t-value="0"/>
+                                    <t t-set="ded_amount" t-value="0"/>
+
+
+                              <tr t-foreach="o.line_ids.sorted(key=lambda b: b.category_id.code=='DED')" t-as="l" style="padding:3px;Text-align:center;border-right: 1px solid black;border: 1px solid black;border-collapse: collapse;" >
+
+                                            <td width="28%" colspan="2" style="padding:3px;font-weight:bold;border: 1px solid black;border-collapse: collapse;Text-align:left;">
+                                              <t t-if="l.category_id.code!='DED'">
+                                              <t t-esc="l.name"/>
+                                              </t>
+
+
+                                                <t t-if="not l.category_id.code!='DED'">
+                                             <span style="visibility:hidden;">.</span>
+                                              </t>
+
+
+                                          </td>
+
+
+                                          <td width="15%" style="padding:3px;border: 1px solid black;border-collapse: collapse;Text-align:right;font-weight:bold;">
+                                              <t t-if="l.category_id.code!='DED'">
+
+                                              <t t-esc="l.total"/>
+                                              <t t-set="gross_actual" t-value="gross_actual+l.total"/>
+                                              </t>
+
+                                              <t t-if="not l.category_id.code!='DED'">
+                                             <span style="visibility:hidden;">.</span>
+                                              </t>
+                                          </td>
+
+
+                                          <td width="15%" style="padding:3px;border: 1px solid black;border-collapse: collapse;Text-align:right;font-weight:bold;">
+                                              <t t-if="l.category_id.code!='DED'">
+
+                                              <t t-esc="l.total"/>
+                                              <t t-set="gross_amount" t-value="gross_amount+l.total"/>
+                                              </t>
+
+                                              <t t-if="not l.category_id.code!='DED'">
+                                             <span style="visibility:hidden;">.</span>
+                                              </t>
+                                          </td>
+
+                              </tr>
+
+                                                         <tr style="border-top:1px solid black;border-collapse:collapse;padding:3px;">
+
+                                 <td colspan="2" style="padding:3px;border: 1px solid black;Text-align:right;font-weight:bold;">Gross Pay:</td>
+
+                                <td style="padding:3px;border: 1px solid black;Text-align:right; font-weight:bold;">
+
+                                    <t t-set="gr_sum" t-value="0"/>
+
+                                     <t t-foreach="o.line_ids" t-as="m">
+
+                                         <t t-if="m.category_id.code=='GROSS'">
+                                             <t t-set="gr_sum" t-value="gr_sum+m.amount"/>
+                                     </t>
+                                     </t>
+                                    <t t-esc="gr_sum"/>
+
+
+                                 </td>
+                                 <td style="padding:3px;font-weight:bold;border: 1px solid black;Text-align:right;">
+                                     <t t-set="gr_s" t-value="0"/>
+                                    <t t-foreach="o.line_ids" t-as="m">
+
+                                         <t t-if="m.category_id.code=='GROSS'">
+                                             <t t-set="gr_s" t-value="gr_s+m.amount"/>
+                                     </t>
+                                     </t>
+                                     <t t-esc="gr_s"/>
+                                 </td>
+                                                         </tr>
+                                                        <tr style="padding:3px;border-top:1px solid black;border-collapse:collapse;">
+
+
+                                  <td colspan="6" style="padding:3px;font-weight:bold;border: 1px solid black;Text-align:right;">
+
+                                      <span style="visibility:hidden;">.</span>
+
+
+                                  </td>
+                             </tr>
+                                                     </table>
+                                    </td>
+
+
+                                 <td width="43%" colspan="3">
+
+
+
+                                      <table style="padding:3px;Text-align:center; font-weight:bold;border-right: 1px solid black;border: 1px solid black;border-collapse: collapse;">
+                                                        <tr style="padding:3px;background-color:#B8B8B8;Text-align:center; font-weight:bold;border-right: 1px solid black;border: 1px solid black;border-collapse: collapse;background-color:#B0B0B0;">
+                                                             <td width="28%" colspan="2" align="left" style="padding:3px;border-right: 1px solid black;border-collapse: collapse;">Deductions</td>
+                                                         <td width="15%" align="center" style="padding:3px;border-right: 2px solid black;border-collapse: collapse;">Amount</td>
+                                                     </tr>
+
+
+                                                         <t t-set="gross_actual" t-value="0"/>
+                                    <t t-set="gross_amount" t-value="0"/>
+                                    <t t-set="ded_amount" t-value="0"/>
+
+
+                                    <tr t-foreach="o.line_ids.sorted(key=lambda b: b.category_id.code!='DED')" t-as="l" style="padding:3px;Text-align:center;border-right: 1px solid black;border: 1px solid black;border-collapse: collapse;" >
+
+                                     <td width="27%" colspan="2" style="padding:3px;border: 1px solid black;border-collapse: collapse;Text-align:left;font-weight:bold;">
+                                        <t t-if="l.category_id.code=='DED'">
+                                              <t t-esc="l.name"/>
+                                              </t>
+
+                                         <t t-if="not l.category_id.code=='DED'">
+                                             <span style="visibility:hidden;">.</span>
+                                              </t>
+
+
+                                          </td>
+
+
+                                           <td width="15%" style="padding:3px;border: 1px solid black;border-collapse: collapse;Text-align:right;font-weight:bold;">
+                                        <t t-if="l.category_id.code=='DED'">
+                                              <t t-esc="l.total"/>
+                                          <t t-set="ded_amount" t-value="ded_amount+l.total"/>
+                                              </t>
+
+                                               <t t-if="not l.category_id.code=='DED'">
+                                             <span style="visibility:hidden;">.</span>
+                                              </t>
+                                          </td>
+
+
+                                     </tr>
+
+
+                                                         <tr style="border-top:1px solid black;border-collapse:collapse;padding:3px;">
+
+                                  <td colspan="2" style="padding:3px;font-weight:bold;border: 1px solid black;Text-align:right;">Gross Ded:</td>
+                                 <td style="padding:3px;font-weight:bold;border: 1px solid black;Text-align:right;"> <t t-esc="ded_amount" /></td>
+                             </tr>
+
+                                                         <tr style="padding:3px;border-top:1px solid black;border-collapse:collapse;">
+
+                                                <td colspan="2" style="padding:3px;font-weight:bold;border: 1px solid black;Text-align:right;">Net Salary:</td>
+
+
+                                 <td style="padding:3px;font-weight:bold;border: 1px solid black;Text-align:right;">
+
+
+                                <t t-set="net_sum" t-value="0"/>
+                                     <t t-foreach="o.line_ids" t-as="m">
+
+                                         <t t-if="m.category_id.code=='NET'">
+                                             <t t-set="net_sum" t-value="net_sum+m.amount"/>
+                                     </t>
+                                     </t>
+                                     <t t-esc="net_sum"/>
+
+                                 </td>
+                             </tr>
+                                                     </table>
+
+
+
+                                </td>
+
+
+                             </tr>
+
+
+
+<!--                             <tr style="padding:3px;background-color:#B8B8B8;Text-align:center; font-weight:bold;border-right: 1px solid black;border: 1px solid black;border-collapse: collapse;background-color:#B0B0B0;">-->
+<!--                                                         <td width="27%" colspan="2" align="left" style="padding:3px;border-right: 1px solid black;border-collapse: collapse;">Earnings</td>-->
+<!--                                                         <td width="15%" align="center" style="padding:3px;border-right: 1px solid black;border-collapse: collapse;">Actual</td>-->
+<!--                                                         <td width="15%" align="center" style="padding:3px;border-right: 1px solid black;border-collapse: collapse;">Amount</td>-->
+<!--                                                         <td width="28%" colspan="2" align="left" style="padding:3px;border-right: 1px solid black;border-collapse: collapse;">Deductions</td>-->
+<!--                                                         <td width="15%" align="center" style="padding:3px;border-right: 2px solid black;border-collapse: collapse;">Amount</td>-->
+<!--                                                     </tr>-->
+<!--                                    <t t-set="gross_actual" t-value="0"/>-->
+<!--                                    <t t-set="gross_amount" t-value="0"/>-->
+<!--                                    <t t-set="ded_amount" t-value="0"/>-->
+
+<!--                             <tr>-->
+<!--                                 <td colspan="4">-->
+
+<!--                                     <table>-->
+<!--                              <tr t-foreach="o.line_ids.sorted(key=lambda b: b.category_id.name=='Deduction')" t-as="l" style="padding:3px;Text-align:center;border-right: 1px solid black;border: 1px solid black;border-collapse: collapse;" >-->
+
+<!--                                            <td width="28%" colspan="2" style="padding:3px;font-weight:bold;border: 1px solid black;border-collapse: collapse;Text-align:left;">-->
+<!--                                              <t t-if="l.category_id.name!='Deduction'">-->
+<!--                                              <t t-esc="l.name"/>-->
+<!--                                              </t>-->
+
+<!--                                              <t t-if="l.category_id.name=='Deduction'">-->
+<!--                                              </t>-->
+<!--                                          </td>-->
+
+
+<!--                                          <td width="15%" style="padding:3px;border: 1px solid black;border-collapse: collapse;Text-align:right;font-weight:bold;">-->
+<!--                                              <t t-if="l.category_id.name!='Deduction'">-->
+
+<!--                                              <t t-esc="l.total"/>-->
+<!--                                              <t t-set="gross_actual" t-value="gross_actual+l.total"/>-->
+<!--                                              </t>-->
+<!--                                          </td>-->
+
+
+<!--                                          <td width="15%" style="padding:3px;border: 1px solid black;border-collapse: collapse;Text-align:right;font-weight:bold;">-->
+<!--                                              <t t-if="l.category_id.name!='Deduction'">-->
+
+<!--                                              <t t-esc="l.total"/>-->
+<!--                                              <t t-set="gross_amount" t-value="gross_amount+l.total"/>-->
+<!--                                              </t>-->
+<!--                                          </td>-->
+
+<!--                              </tr>-->
+<!--                                  </table>-->
+
+
+<!--                                 </td>-->
+<!--                                 <td colspan="3">-->
+<!--                                     <table>-->
+<!--                                     <tr t-foreach="o.line_ids.sorted(key=lambda b: b.category_id.name!='Deduction')" t-as="l" style="padding:3px;Text-align:center;border-right: 1px solid black;border: 1px solid black;border-collapse: collapse;" >-->
+
+<!--                                     <td width="27%" colspan="2" style="padding:3px;border: 1px solid black;border-collapse: collapse;Text-align:left;font-weight:bold;">-->
+<!--                                        <t t-if="l.category_id.name=='Deduction'">-->
+<!--                                              <t t-esc="l.name"/>-->
+<!--                                              </t>-->
+<!--                                          </td>-->
+
+
+<!--                                           <td width="15%" style="padding:3px;border: 1px solid black;border-collapse: collapse;Text-align:right;font-weight:bold;">-->
+<!--                                        <t t-if="l.category_id.name=='Deduction'">-->
+<!--                                              <t t-esc="l.total"/>-->
+<!--                                          <t t-set="ded_amount" t-value="ded_amount+l.total"/>-->
+<!--                                              </t>-->
+<!--                                          </td>-->
+
+
+<!--                                     </tr>-->
+<!--                                     </table>-->
+
+<!--                                 </td>-->
+<!--                             </tr>-->
+
+<!--                              <tr t-foreach="o.line_ids.sorted(key=lambda b: b.category_id.name!='Deduction')" t-as="l" style="padding:3px;Text-align:center;border-right: 1px solid black;border: 1px solid black;border-collapse: collapse;" >-->
+
+
+
+                                        <!--   <td width="27%" colspan="2" style="padding:3px;font-weight:bold;border-right: 1px solid black;Text-align:left;">
+                                              <t t-if="l.category_id.name!='Deduction'">
+                                              <t t-esc="l.name"/>
+                                              </t>
+
+                                              <t t-if="l.category_id.name=='Deduction'">
+                                              </t>
+                                          </td/> -->
+                                              <!-- <td width="15%" style="padding:3px;border-right: 1px solid black;Text-align:right;font-weight:bold;"> -->
+                                              <!-- <t t-if="l.category_id.name!='Deduction'"> -->
+
+                                              <!-- <t t-esc="l.total"/> -->
+                                              <!-- <t t-set="gross_actual" t-value="gross_actual+l.total"/> -->
+                                              <!-- </t> -->
+                                          <!-- </td> -->
+
+                                          <!--   <td width="15%" style="padding:3px;border-right: 1px solid black;Text-align:right;font-weight:bold;">
+                                              <t t-if="l.category_id.name!='Deduction'">
+
+                                              <t t-esc="l.total"/>
+                                              <t t-set="gross_amount" t-value="gross_amount+l.total"/>
+                                              </t>
+                                          </td> -->
+
+
+
+                                   <!-- <td width="28%" colspan="2" style="padding:3px;border-right: 1px solid black;Text-align:left;font-weight:bold;"> -->
+                                        <!-- <t t-if="l.category_id.name=='Deduction'"> -->
+                                              <!-- <t t-esc="l.name"/> -->
+                                              <!-- </t> -->
+                                          <!-- </td> -->
+
+
+                                  <!--  <td width="15%" style="padding:3px;border-right: 1px solid black;Text-align:right;font-weight:bold;">
+                                        <t t-if="l.category_id.name=='Deduction'">
+                                              <t t-esc="l.total"/>
+                                          <t t-set="ded_amount" t-value="ded_amount+l.total"/>
+                                              </t>
+                                          </td/> -->
+
+
+
+<!--                            </tr>-->
+<!--                             <tr style="border-top:1px solid black;border-collapse:collapse;padding:3px;">-->
+
+<!--                                 <td colspan="2" style="padding:3px;border: 1px solid black;Text-align:right;font-weight:bold;">Gross Pay:</td>-->
+<!--                                 <td style="padding:3px;border: 1px solid black;Text-align:right; font-weight:bold;"><t t-esc="gross_actual" /></td>-->
+<!--                                 <td style="padding:3px;font-weight:bold;border: 1px solid black;Text-align:right;"> <t t-esc="gross_amount" /></td>-->
+<!--                                  <td colspan="2" style="padding:3px;font-weight:bold;border: 1px solid black;Text-align:right;">Gross Ded:</td>-->
+<!--                                 <td style="padding:3px;font-weight:bold;border: 1px solid black;Text-align:right;"> <t t-esc="ded_amount" /></td>-->
+<!--                             </tr>-->
+
+<!--                              <tr style="padding:3px;border-top:1px solid black;border-collapse:collapse;">-->
+
+
+<!--                                  <td colspan="6" style="padding:3px;font-weight:bold;border: 1px solid black;Text-align:right;">Net Salary:</td>-->
+<!--                                 <td style="padding:3px;font-weight:bold;border: 1px solid black;Text-align:right;"> <t t-esc="gross_amount+ded_amount" /></td>-->
+<!--                             </tr>-->
+
+                             <t t-set="total_val" t-value="gross_amount+ded_amount"/>
+
+
+
+                               <tr style="padding:3px;border-top:1px solid black;border-collapse:collapse;">
+                                  <td colspan="7" style="padding:3px;font-weight:bold;border: 1px solid black;Text-align:left;">Amount In Words:<span t-esc="o.currency_id.amount_to_text(int(net_sum))"/></td>
+                             </tr>
+
+                              <tr style="padding:3px;border-top:1px solid black;border-collapse:collapse;">
+                                  <td style="padding:3px;" colspan="4"><b>Pay In Charge</b></td>
+                                  <td style="padding:3px;" colspan="3"><b>Employee</b></td>
+                             </tr>
+
+
+
+                        </table>
+
+
+                     </div>
+
+
+                </div>
+ </t>
+<!-- </t>-->
+</template>
+
+
+      <template id="splife_invoice">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="splife_invoice_print.report_splife_document" t-lang="o.env.user.lang"/>
+        </t>
+    </t>
+</template>
+    </data>
+</odoo>
+
