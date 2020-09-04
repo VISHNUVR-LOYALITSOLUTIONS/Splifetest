@@ -8,6 +8,8 @@ from datetime import date, timedelta
 class workentry_Conflict(models.Model):
     _inherit = 'hr.work.entry'
 
+    s=[]
+
 
     def allsundays(self,years):
         sunndays =[]
@@ -15,7 +17,9 @@ class workentry_Conflict(models.Model):
         # out = []
         d = date(year, 1, 1)  # January 1st
 
-        global_attendance = self.env.user.company_id.resource_calendar_id.attendance_ids
+        # global_attendance = self.env.user.company_id.resource_calendar_id.attendance_ids
+
+        global_attendance = self.s.resource_calendar_id.attendance_ids
 
         # attendance = self.env['ir.config_parameter'].sudo().get_param('hr.resource_calandar_idf') or False
         # att= self.env.user.company_id.resource_calendar_id
@@ -81,6 +85,10 @@ class workentry_Conflict(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         year_list =[]
+
+        for vals in vals_list:
+            self.s = self.env['hr.employee'].browse(vals['employee_id'])
+
 
         work_entries = super(workentry_Conflict, self).create(vals_list)
 

@@ -1,0 +1,57 @@
+
+<odoo>
+  <data>
+
+
+
+       <record id="update_workentry_to_timesheet_action" model="ir.ui.view">
+            <field name="name">Work Entry Timesheet</field>
+            <field name="model">select.workentry.timesheet</field>
+            <field name="arch" type="xml">
+                <form>
+
+                    <group>
+                        <h4>Are you sure you want to proceed this as time sheet entry?</h4>
+                    </group>
+
+                    <footer>
+                        <button name="update_timesheet" string="Timesheet" type="object"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+
+       <record id="update_workentry_to_timesheet" model="ir.actions.act_window">
+        <field name="name">Work Entry to Timesheet</field>
+        <field name="res_model">select.workentry.timesheet</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="update_workentry_to_timesheet_action"/>
+        <field name="target">new</field>
+    </record>
+
+
+      <menuitem id="update_workentry_to_timesheet_action_window" name="Work Entry to Timesheet"
+                  parent="hr_payroll.menu_hr_payroll_configuration" action="update_workentry_to_timesheet"/>
+
+
+
+
+      <act_window id="update_state_action_in_work_entry"
+                  name="Timesheet Entry"
+            res_model="select.workentry.timesheet"
+            binding_model="hr.work.entry"
+                  binding_views="list"
+            view_mode="form"
+            target="new"
+
+        />
+
+
+
+
+
+  </data>
+</odoo>
