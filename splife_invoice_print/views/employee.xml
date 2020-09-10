@@ -1,0 +1,23 @@
+<odoo>
+    <data>
+        <record id="personal_hr_employee_payslip_form" model="ir.ui.view">
+        <field name="name">hr.employee.invoice print</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+
+
+             <xpath expr="//sheet/notebook/page[@name='personal_information']/group/group/field[@name='children']/.." position="after">
+                            <group string="Bank Details">
+                                       <field name="acc_number"/>
+                                        <field name="ifsc_code"/>
+                                <field name="bank_name"/>
+                                <field name="branch_name"/>
+                                    </group>
+
+            </xpath>
+
+        </field>
+        </record>
+    </data>
+</odoo>

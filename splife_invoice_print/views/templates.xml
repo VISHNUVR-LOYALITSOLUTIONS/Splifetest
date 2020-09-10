@@ -1,0 +1,12 @@
+<odoo>
+    <data>
+   <report
+    id="splife_invoice_print"
+    model="hr.payslip"
+    string="Payslip Splifecare"
+    report_type="qweb-pdf"
+    name="splife_invoice_print.splife_invoice"
+    file="splife_invoice_print.splife_invoice"
+    />
+    </data>
+</odoo>
